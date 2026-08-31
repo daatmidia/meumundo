@@ -11,6 +11,131 @@
   const PT_BR = 'pt-BR';
   const EN_US = 'en-US';
   const ES_ES = 'es-ES';
+
+  // ===== Supabase (banco de dados das denúncias) =====
+  const SUPABASE_URL = 'https://fywxqwkoouysmjmuctsp.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_JCVnUmTMBcomihvH4tAbkQ_uE8uiKjk';
+  const SB_ON = /^https:\/\/.+\.supabase\.co$/.test(SUPABASE_URL) && Boolean(SUPABASE_KEY);
+  const sbHeaders = (extra) => Object.assign({
+    apikey: SUPABASE_KEY,
+    Authorization: `Bearer ${SUPABASE_KEY}`,
+    'Content-Type': 'application/json'
+  }, extra || {});
+  const rowToReport = (row) => ({
+    protocol: row.protocolo,
+    status: row.status || 'Recebido',
+    created: row.created,
+    data: row.dados || {},
+    assignedProfessionalId: row.assigned || ''
+  });
+
+  // ----- Sessão de administrador (Supabase Auth) -----
+  const SB_SESSION_KEY = 'jsb_sb_session';
+  let sbSession = null;
+  (function loadStoredSession() {
+    try { sbSession = JSON.parse(sessionStorage.getItem(SB_SESSION_KEY) || 'null'); }
+    catch { sbSession = null; }
+  })();
+  function sbSaveSession(s) {
+    sbSession = s;
+    try {
+      if (s) sessionStorage.setItem(SB_SESSION_KEY, JSON.stringify(s));
+      else sessionStorage.removeItem(SB_SESSION_KEY);
+    } catch { /* ignore */ }
+  }
+  function sbIsLogged() { return Boolean(sbSession?.access_token); }
+  function sbAuthHeaders(extra) {
+    const token = sbSession?.access_token || SUPABASE_KEY;
+    return Object.assign({
+      apikey: SUPABASE_KEY,
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    }, extra || {});
+  }
+  async function sbSignIn(email, password) {
+    if (!SB_ON || !email || !password) return false;
+    try {
+      const res = await fetch(`${SUPABASE_URL}/auth/v1/token?grant_type=password`, {
+        method: 'POST',
+        headers: { apikey: SUPABASE_KEY, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
+      if (!res.ok) return false;
+      const data = await res.json();
+      if (!data.access_token) return false;
+      sbSaveSession(data);
+      return true;
+    } catch { return false; }
+  }
+
+  async function sbInsert(report) {
+    if (!SB_ON) return false;
+    try {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/denuncias`, {
+        method: 'POST',
+        headers: sbHeaders({ Prefer: 'return=minimal' }),
+        body: JSON.stringify({
+          protocolo: report.protocol,
+          status: report.status,
+          assigned: report.assignedProfessionalId || null,
+          dados: report.data,
+          created: report.created
+        })
+      });
+      return res.ok;
+    } catch { return false; }
+  }
+
+  // Lê todas as denúncias — só funciona para administradores logados (RLS).
+  async function sbFetchAll() {
+    if (!SB_ON) return null;
+    try {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/denuncias?select=*&order=created.desc`, { headers: sbAuthHeaders() });
+      if (!res.ok) return null;
+      const rows = await res.json();
+      return Array.isArray(rows) ? rows.map(rowToReport) : null;
+    } catch { return null; }
+  }
+
+  // Consulta pública de status via função protegida (retorna só status e data).
+  async function sbFetchByProtocol(code) {
+    if (!SB_ON) return null;
+    try {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/consultar_protocolo`, {
+        method: 'POST',
+        headers: sbHeaders(),
+        body: JSON.stringify({ p: code })
+      });
+      if (!res.ok) return null;
+      const rows = await res.json();
+      if (!rows || !rows.length) return null;
+      const row = rows[0];
+      return { protocol: code, status: row.status || 'Recebido', created: row.created, data: {}, assignedProfessionalId: '' };
+    } catch { return null; }
+  }
+
+  // Atualiza status/encaminhamento — só administradores logados (RLS).
+  async function sbUpdate(code, patch) {
+    if (!SB_ON) return false;
+    try {
+      const url = `${SUPABASE_URL}/rest/v1/denuncias?protocolo=eq.${encodeURIComponent(code)}`;
+      const res = await fetch(url, {
+        method: 'PATCH',
+        headers: sbAuthHeaders({ Prefer: 'return=minimal' }),
+        body: JSON.stringify(patch)
+      });
+      return res.ok;
+    } catch { return false; }
+  }
+
+  async function syncFromSupabase() {
+    if (!sbIsLogged()) return null;
+    const rows = await sbFetchAll();
+    if (rows) {
+      try { localStorage.setItem(LS_KEY, JSON.stringify(rows)); } catch { /* ignore */ }
+    }
+    return rows;
+  }
   const setText = (sel, txt) => { const el = document.querySelector(sel); if (el) el.textContent = txt; };
   const setHtml = (sel, html) => { const el = document.querySelector(sel); if (el) el.innerHTML = html; };
   const setAttr = (sel, attr, val) => { const el = document.querySelector(sel); if (el) el.setAttribute(attr, val); };
@@ -87,9 +212,9 @@
         es: 'Confirma la declaración de veracidad.'
       },
       protocolNotFound: {
-        pt: 'Protocolo não encontrado neste navegador (demonstração local).',
-        en: 'Protocol not found in this browser (local demonstration).',
-        es: 'Protocolo no encontrado en este navegador (demostración local).'
+        pt: 'Protocolo não encontrado. Confira o código digitado.',
+        en: 'Protocol not found. Please check the code you typed.',
+        es: 'Protocolo no encontrado. Verifica el código ingresado.'
       },
       statusLabel: { pt: 'Status', en: 'Status', es: 'Estado' },
       forwardTo: { pt: 'Encaminhar para', en: 'Forward to', es: 'Derivar a' },
@@ -108,9 +233,9 @@
         es: 'No se encontraron denuncias con los filtros actuales.'
       },
       invalidSchoolAdminCode: {
-        pt: 'Código inválido.',
-        en: 'Invalid code.',
-        es: 'Código inválido.'
+        pt: 'E-mail ou senha inválidos.',
+        en: 'Invalid email or password.',
+        es: 'Correo o contraseña inválidos.'
       },
       noEmployeeThisSchool: {
         pt: 'Nenhum funcionário cadastrado para esta escola.',
@@ -143,9 +268,9 @@
         es: 'Selecciona el tipo, indica el nombre del profesional y la escuela.'
       },
       invalidSiteAdminCode: {
-        pt: 'Código do administrador do site inválido.',
-        en: 'Invalid site administrator code.',
-        es: 'Código del administrador del sitio inválido.'
+        pt: 'E-mail ou senha inválidos.',
+        en: 'Invalid email or password.',
+        es: 'Correo o contraseña inválidos.'
       },
       noProtocols: {
         pt: 'Nenhum protocolo encontrado.',
@@ -180,7 +305,7 @@
       accessSub: ['Track protocol', 'Administrative access', 'School access', 'Training']
     });
     setText('.ouv-hero-title', 'School Ombudsman');
-    setText('.ouv-lead', 'Report bullying or cyberbullying anonymously or identified. You receive a protocol to follow up — local browser demo.');
+    setText('.ouv-lead', 'Report bullying or cyberbullying anonymously or identified. You receive a protocol to follow up on your report.');
     setText('.ouv-btn-primary[href="#formulario"]', 'New report');
     setText('.ouv-btn-ghost[href="#acompanhar"]', 'Track protocol');
     setText('.ouv-section-label', 'Before registering');
@@ -211,7 +336,7 @@
       accessSub: ['Consultar protocolo', 'Acceso administrativo', 'Acceso escuelas', 'Capacitaciones']
     });
     setHtml('.ouv-hero-title', 'Defensoría <span class="ouv-hero-accent">Escolar</span>');
-    setHtml('.ouv-lead', 'Registra bullying o ciberbullying de forma <strong>anónima</strong> o <strong>identificada</strong>. Recibes un <strong>protocolo</strong> para seguimiento — demostración local en el navegador.');
+    setHtml('.ouv-lead', 'Registra bullying o ciberbullying de forma <strong>anónima</strong> o <strong>identificada</strong>. Recibes un <strong>protocolo</strong> para dar seguimiento a tu denuncia.');
     setText('.ouv-btn-primary[href="#formulario"]', 'Nueva denuncia');
     setText('.ouv-btn-ghost[href="#acompanhar"]', 'Consultar protocolo');
     setText('#orientacoes .ouv-section-label', 'Antes de registrar');
@@ -427,6 +552,7 @@
       data: d
     };
     saveReport(rep);
+    sbInsert(rep).catch(() => { /* mantém salvo localmente se o banco falhar */ });
     document.getElementById('modalProtocol').textContent = protocol;
     document.getElementById('successModal')?.classList.remove('hidden');
     form.reset();
@@ -441,12 +567,15 @@
     document.getElementById('successModal')?.classList.add('hidden');
   });
 
-  document.getElementById('protocolBtn')?.addEventListener('click', () => {
+  document.getElementById('protocolBtn')?.addEventListener('click', async () => {
     const code = document.getElementById('protocolInput')?.value.trim().toUpperCase();
     const box = document.getElementById('protocolResult');
     if (!code || !box) return;
-    const rep = loadReports().find((r) => r.protocol === code);
     box.classList.remove('hidden');
+
+    let rep = await sbFetchByProtocol(code);
+    if (!rep) rep = loadReports().find((r) => r.protocol === code);
+
     if (!rep) {
       box.style.background = '#fef2f2';
       box.style.borderColor = '#fecaca';
@@ -462,13 +591,15 @@
     box.innerHTML = `<strong>${msg('statusLabel')}:</strong> ${labelStatus(rep.status)}<br><small>${new Date(rep.created).toLocaleString(currentLocale)}</small>`;
   });
 
-  document.getElementById('adminLogin')?.addEventListener('click', () => {
-    const code = document.getElementById('adminCode')?.value;
+  document.getElementById('adminLogin')?.addEventListener('click', async () => {
+    const email = document.getElementById('adminEmail')?.value.trim();
+    const password = document.getElementById('adminCode')?.value;
     const app = document.getElementById('adminApp');
     const accessBlock = document.getElementById('adminAccessBlock');
     const accessBtn = document.getElementById('adminAccess');
     if (!app) return;
-    if (code !== ADMIN_CODE) {
+    const ok = await sbSignIn(email, password);
+    if (!ok) {
       alert(msg('invalidSchoolAdminCode'));
       return;
     }
@@ -537,6 +668,7 @@
       if (!item) return;
       item.status = newStatus;
       localStorage.setItem(LS_KEY, JSON.stringify(arr));
+      sbUpdate(protocol, { status: newStatus }).catch(() => { /* ignore */ });
     }
 
     function setAssigned(protocol, proId) {
@@ -545,6 +677,7 @@
       if (!item) return;
       item.assignedProfessionalId = proId || '';
       localStorage.setItem(LS_KEY, JSON.stringify(arr));
+      sbUpdate(protocol, { assigned: proId || null }).catch(() => { /* ignore */ });
     }
 
     function formatDate(ptIso) {
@@ -766,7 +899,8 @@
     }
 
     // Events
-    document.getElementById('adminRefresh')?.addEventListener('click', () => {
+    document.getElementById('adminRefresh')?.addEventListener('click', async () => {
+      await syncFromSupabase();
       renderPeople();
       renderProtocols();
       renderReport();
@@ -894,8 +1028,9 @@
 
     // Abre o Painel Administrativo apenas quando o usuário clicar em "Acesso Administrativo"
     if (accessBtn) {
-      accessBtn.onclick = () => {
+      accessBtn.onclick = async () => {
         app.classList.remove('hidden');
+        await syncFromSupabase();
         renderPeople();
         renderProtocols();
         renderReport();
@@ -906,14 +1041,17 @@
   // ===== Painel Administrativo do Site (3º bloco) =====
   const siteAdminPanelApp = document.getElementById('siteAdminApp');
   const siteAdminCodeInput = document.getElementById('siteAdminCode');
-  document.getElementById('siteAdminLogin')?.addEventListener('click', () => {
-    const code = siteAdminCodeInput?.value;
+  document.getElementById('siteAdminLogin')?.addEventListener('click', async () => {
+    const email = document.getElementById('siteAdminEmail')?.value.trim();
+    const password = siteAdminCodeInput?.value;
     if (!siteAdminPanelApp) return;
-    if (code !== SITE_ADMIN_CODE) {
+    const ok = await sbSignIn(email, password);
+    if (!ok) {
       alert(msg('invalidSiteAdminCode'));
       return;
     }
     siteAdminPanelApp.classList.remove('hidden');
+    await syncFromSupabase();
     renderSiteProtocols();
   });
 
@@ -1013,6 +1151,7 @@
     if (!item) return;
     item.status = newStatus;
     localStorage.setItem(LS_KEY, JSON.stringify(arr));
+    sbUpdate(protocol, { status: newStatus }).catch(() => { /* ignore */ });
   }
 
   function normalize(s) {
@@ -1077,4 +1216,7 @@
   });
 
   showStep(1);
+
+  // Sincroniza as denúncias do banco assim que a página abre.
+  syncFromSupabase().catch(() => { /* segue com dados locais */ });
 })();

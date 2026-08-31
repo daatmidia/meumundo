@@ -87,7 +87,7 @@
           Canal escolar seguro · Lei 14.811/2024
         </div>
         <h1 class="ouv-hero-title">Ouvidoria <span class="ouv-hero-accent">Escolar</span></h1>
-        <p class="ouv-lead">Você está seguro(a) aqui. Conte o que aconteceu no seu ritmo — cada detalhe ajuda. Você recebe um <strong>protocolo</strong> para acompanhar — demonstração local no navegador.</p>
+        <p class="ouv-lead">Você está seguro(a) aqui. Conte o que aconteceu no seu ritmo — cada detalhe ajuda. Você recebe um <strong>protocolo</strong> para acompanhar sua denúncia.</p>
         <div class="ouv-quick">
           <a href="#formulario" class="ouv-btn ouv-btn-primary">Nova denúncia</a>
           <a href="#acompanhar" class="ouv-btn ouv-btn-ghost">Acompanhar protocolo</a>
@@ -223,12 +223,13 @@
           <span class="ouv-panel-icon" aria-hidden="true">🏫</span>
           <div>
             <h2 class="ouv-panel-title">Painel da escola</h2>
-            <p class="ouv-muted">Demonstração · código: <code class="ouv-code">escola2026</code></p>
+            <p class="ouv-muted">Acesso restrito — entre com o e-mail e a senha de administrador.</p>
           </div>
         </div>
 
         <div class="ouv-track ouv-track-modern">
-          <input type="password" id="adminCode" class="ouv-input" placeholder="Código de acesso" autocomplete="current-password">
+          <input type="email" id="adminEmail" class="ouv-input" placeholder="E-mail do administrador" autocomplete="username">
+          <input type="password" id="adminCode" class="ouv-input" placeholder="Senha" autocomplete="current-password">
           <button type="button" class="ouv-btn ouv-btn-secondary" id="adminLogin">Entrar</button>
         </div>
 
@@ -371,12 +372,13 @@
           <span class="ouv-panel-icon" aria-hidden="true">⚙️</span>
           <div>
             <h2 class="ouv-panel-title">Painel Administrativo (Site)</h2>
-            <p class="ouv-muted">Acesso para administradores do site · (demo: <code class="ouv-code">site2026</code>)</p>
+            <p class="ouv-muted">Acesso restrito — entre com o e-mail e a senha de administrador.</p>
           </div>
         </div>
 
         <div class="ouv-track ouv-track-modern">
-          <input type="password" id="siteAdminCode" class="ouv-input" placeholder="Código do administrador do site" autocomplete="current-password">
+          <input type="email" id="siteAdminEmail" class="ouv-input" placeholder="E-mail do administrador" autocomplete="username">
+          <input type="password" id="siteAdminCode" class="ouv-input" placeholder="Senha" autocomplete="current-password">
           <button type="button" class="ouv-btn ouv-btn-secondary" id="siteAdminLogin">Entrar</button>
         </div>
 
