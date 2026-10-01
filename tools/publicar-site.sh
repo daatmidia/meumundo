@@ -1,5 +1,5 @@
 #!/bin/bash
-# Publica alterações locais no GitHub Pages (branch main).
+# Publica alterações no site atual e no repositório meumundo.
 set -u
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
@@ -34,4 +34,9 @@ Atualiza o site automaticamente.
 EOF
 )" || exit 0
 
-git push origin HEAD:main || exit 0
+if ! git remote get-url meumundo >/dev/null 2>&1; then
+  git remote add meumundo https://github.com/daatmidia/meumundo.git
+fi
+
+git push origin HEAD:main || true
+git push meumundo HEAD:projeto-jcb || true
