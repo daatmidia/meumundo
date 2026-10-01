@@ -1,0 +1,20 @@
+---
+description: Envia toda alteração do projeto para o repositório meumundo
+alwaysApply: true
+---
+
+# Publicar no repositório meumundo
+
+Depois de alterar qualquer arquivo deste projeto, envie o resultado para o GitHub na mesma tarefa. Não espere um pedido separado.
+
+- Repositório: https://github.com/daatmidia/meumundo
+- Remote: `origin`
+- Branch: `main`
+
+Ao terminar a alteração:
+
+1. Revise `git status` e `git diff`.
+2. Faça o commit dos arquivos do projeto. Deixe de fora `.env`, chaves e credenciais.
+3. Envie com `git push origin main`.
+
+Não use `--force`, `--no-verify` e não altere a configuração do git.
