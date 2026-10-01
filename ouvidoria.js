@@ -457,6 +457,25 @@
   });
   syncRadioCards();
 
+  // Seleção de escola (banco de dados de destino da denúncia).
+  const escolaSelect = document.getElementById('escolaSelect');
+  const outraEscolaWrap = document.getElementById('outraEscolaWrap');
+  const escolaOutra = document.getElementById('escolaOutra');
+  function toggleOutraEscola() {
+    const isOutra = escolaSelect?.value === 'outra';
+    if (outraEscolaWrap) outraEscolaWrap.classList.toggle('hidden', !isOutra);
+    if (escolaOutra) escolaOutra.required = Boolean(isOutra);
+  }
+  escolaSelect?.addEventListener('change', toggleOutraEscola);
+  toggleOutraEscola();
+
+  // Escola efetiva: usa o valor da lista, ou o texto livre quando "Outra escola".
+  function getEscola() {
+    const sel = escolaSelect?.value || '';
+    if (sel === 'outra') return (escolaOutra?.value || '').trim();
+    return sel;
+  }
+
   function showStep(n) {
     current = n;
     panels().forEach((p) => {
@@ -479,7 +498,7 @@
     const lines = [
       `Identificação: ${d.idTipo || '-'}`,
       d.idTipo !== 'anonimo' ? `Nome/contato: ${d.nome || '-'} / ${d.contato || '-'}` : '',
-      `Escola: ${d.escola || '-'}`,
+      `Escola: ${getEscola() || '-'}`,
       `Tipo: ${d.tipo || '-'} | Frequência: ${d.frequencia || '-'} | Urgência: ${d.urgencia || '-'}`,
       '',
       `Relato:`,
@@ -498,7 +517,7 @@
       }
     }
     if (current === 2) {
-      if (!form.escola?.value.trim() || !form.tipo?.value || !form.frequencia?.value) {
+      if (!getEscola() || !form.tipo?.value || !form.frequencia?.value) {
         alert(msg('fillSchoolTypeFreq'));
         return;
       }
@@ -544,6 +563,8 @@
       return;
     }
     const d = getFormData();
+    d.escola = getEscola();
+    delete d.escolaOutra;
     const protocol = genProtocol();
     const rep = {
       protocol,
@@ -560,6 +581,7 @@
     const anonMsg = document.getElementById('anonMessage');
     if (camposIdent) camposIdent.hidden = false;
     if (anonMsg) anonMsg.hidden = false;
+    toggleOutraEscola();
     showStep(1);
   });
 

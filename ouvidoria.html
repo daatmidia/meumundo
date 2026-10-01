@@ -159,7 +159,16 @@
 
           <div class="ouv-panel hidden" data-panel="2">
             <h3>Sobre o ocorrido</h3>
-            <label>Escola / unidade <input type="text" name="escola" required placeholder="Nome da escola"></label>
+            <label>Escola / unidade
+              <select name="escola" id="escolaSelect" required>
+                <option value="">Selecione a escola</option>
+                <option value="GRU1">GRU1</option>
+                <option value="outra">Outra escola…</option>
+              </select>
+            </label>
+            <label class="ouv-outra-escola hidden" id="outraEscolaWrap">Nome da escola
+              <input type="text" name="escolaOutra" id="escolaOutra" placeholder="Digite o nome da escola" autocomplete="organization">
+            </label>
             <label>Tipo <select name="tipo" required>
               <option value="">Selecione</option>
               <option value="fisico">Físico</option>
@@ -245,7 +254,10 @@
           <div class="ouv-admin-filter">
             <label class="ouv-label" for="adminSchoolName">Nome da escola (para filtrar protocolos)</label>
             <div class="ouv-track ouv-track-modern">
-              <input type="text" id="adminSchoolName" class="ouv-input" placeholder="Ex: Escola Municipal São Paulo" autocomplete="organization">
+              <input type="text" id="adminSchoolName" class="ouv-input" list="escolasList" placeholder="Ex: GRU1" autocomplete="organization">
+              <datalist id="escolasList">
+                <option value="GRU1"></option>
+              </datalist>
               <button type="button" class="ouv-btn ouv-btn-primary" id="adminRefresh">Atualizar</button>
             </div>
           </div>
