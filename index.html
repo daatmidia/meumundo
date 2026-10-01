@@ -170,10 +170,7 @@ header{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas
 
 <div class="doors">
 <button class="door" data-go="world"><span class="ico" style="background:#CDE8D2">🚂</span><b>Meu mundo</b><span class="d">Os trens, as estações e os passageiros.</span></button>
-<button class="door" data-go="calm"><span class="ico" style="background:#CFE6F0">🫧</span><b>Cantinho calmo</b><span class="d">Respirar devagar com o Eros.</span></button>
-<button class="door" data-go="story"><span class="ico" style="background:#FBE3B4">📖</span><b>Minhas histórias</b><span class="d">Saber o que vai acontecer, passo a passo.</span></button>
 <button class="door" data-go="together"><span class="ico" style="background:#F9D6CC">🤝</span><b>Jogar juntos</b><span class="d">Cada um na sua vez.</span></button>
-<button class="door" data-go="talk"><span class="ico" style="background:#E2D8F2">💬</span><b>Falar</b><span class="d">Mostre o que você quer dizer.</span></button>
 <button class="door" data-go="pais"><span class="ico" style="background:#F6E7B8">👨‍👩‍👧</span><b>Pais e Responsáveis</b><span class="d">Um espaço para a família acompanhar.</span></button>
 <button class="door" data-go="apoio"><span class="ico" style="background:#D5E6F8">🩺</span><b>Profissionais de Apoio</b><span class="d">Orientações para quem cuida junto.</span></button>
 </div>
@@ -185,11 +182,16 @@ header{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas
 <h1>Meu mundo</h1>
 <p class="lead">Aqui fica o interesse que você escolheu. A família escolhe o tema na primeira vez: trens, planetas, dinossauros, mapas…</p>
 <div class="row"><button class="pill">🚂 Trens</button><button class="pill">🪐 Planetas</button><button class="pill">🦕 Dinossauros</button><button class="pill">🗺️ Mapas</button></div>
+<div class="doors">
+<button class="door" data-go="calm"><span class="ico" style="background:#CFE6F0">🫧</span><b>Cantinho calmo</b><span class="d">Respirar devagar com o Eros.</span></button>
+<button class="door" data-go="story"><span class="ico" style="background:#FBE3B4">📖</span><b>Minhas histórias</b><span class="d">Saber o que vai acontecer, passo a passo.</span></button>
+<button class="door" data-go="talk"><span class="ico" style="background:#E2D8F2">💬</span><b>Falar</b><span class="d">Mostre o que você quer dizer.</span></button>
+</div>
 </div></section>
 
 <!-- CALMO -->
 <section class="view" id="v-calm"><div class="panel">
-<button class="pill back" data-go="home">← Voltar</button>
+<button class="pill back" data-go="world">← Voltar</button>
 <h1>Cantinho calmo</h1>
 <p class="lead">Quando a bolha cresce, puxe o ar. Quando ela diminui, solte devagar.</p>
 <div class="breath"><div class="orb" id="orb"><span id="bt">Puxe</span></div></div>
@@ -198,7 +200,7 @@ header{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas
 
 <!-- HISTÓRIAS -->
 <section class="view" id="v-story"><div class="panel">
-<button class="pill back" data-go="home">← Voltar</button>
+<button class="pill back" data-go="world">← Voltar</button>
 <h1>Hoje vamos ao dentista</h1>
 <p class="lead">Estes são os passos. Nada muda sem avisar.</p>
 <ol class="steps" id="steps">
@@ -221,7 +223,7 @@ header{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas
 
 <!-- FALAR -->
 <section class="view" id="v-talk"><div class="panel">
-<button class="pill back" data-go="home">← Voltar</button>
+<button class="pill back" data-go="world">← Voltar</button>
 <h1>Falar</h1>
 <p class="lead">Toque em uma figura. O aparelho fala por você.</p>
 <div class="comm" id="comm"></div>
@@ -240,6 +242,32 @@ header{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas
 <button class="pill back" data-go="home">← Voltar</button>
 <h1>Profissionais de Apoio</h1>
 <p class="lead">Um espaço para quem apoia o Eros na escola, na terapia e no dia a dia.</p>
+<div class="row">
+<button class="pill" data-go="escola">Escola</button>
+<button class="pill" data-go="psico">Psicólogos</button>
+<button class="pill" data-go="juridico">Jurídico</button>
+</div>
+</div></section>
+
+<!-- ESCOLA -->
+<section class="view" id="v-escola"><div class="panel">
+<button class="pill back" data-go="apoio">← Voltar</button>
+<h1>Escola</h1>
+<p class="lead">Um espaço para a escola acompanhar o Eros e combinar o dia.</p>
+</div></section>
+
+<!-- PSICÓLOGOS -->
+<section class="view" id="v-psico"><div class="panel">
+<button class="pill back" data-go="apoio">← Voltar</button>
+<h1>Psicólogos</h1>
+<p class="lead">Um espaço para a terapia e quem acompanha o Eros de perto.</p>
+</div></section>
+
+<!-- JURÍDICO -->
+<section class="view" id="v-juridico"><div class="panel">
+<button class="pill back" data-go="apoio">← Voltar</button>
+<h1>Jurídico</h1>
+<p class="lead">Um espaço para orientações jurídicas da família.</p>
 </div></section>
 
 <!-- AJUSTES -->
