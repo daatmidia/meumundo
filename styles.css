@@ -373,7 +373,7 @@ body:not(.page-home) .nav-item-submenu:has(.nav-admin-cta) {
   min-height: min(85vh, 900px);
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   position: relative;
   background: #fff;
@@ -436,6 +436,12 @@ body:not(.page-home) .nav-item-submenu:has(.nav-admin-cta) {
   from { opacity: 0.85; }
   to { opacity: 1; }
 }
+.page-home .nav-container,
+.hero > .hero-content,
+.page-home .footer > .container {
+  margin-left: clamp(1.25rem, 5vw, 4rem);
+  margin-right: auto;
+}
 .hero-content {
   position: relative;
   z-index: 2;
@@ -496,12 +502,11 @@ body:not(.page-home) .nav-item-submenu:has(.nav-admin-cta) {
   margin: 0 0 0.75rem;
 }
 .hero-desc {
-  max-width: none;
+  max-width: 46rem;
   margin: 0 0 1.75rem;
   color: rgba(15, 23, 42, 0.72);
   font-size: clamp(0.85rem, 2vw, 1rem);
-  padding-inline: 0.5rem;
-  white-space: nowrap;
+  padding-inline: 0;
 }
 .hero-actions {
   display: flex;

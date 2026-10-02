@@ -52,7 +52,7 @@
       project: 'About the Project',
       omb: 'Report',
       access: 'Access',
-      projectSub: ['Educational Content', 'About', 'News', 'Data'],
+      projectSub: ['Educational Content', 'Data', 'News', 'About'],
       accessSub: ['Track protocol', 'Administrative access', 'School access', 'Training']
     });
     setText('.hero-badge-text', 'NATIONAL INCLUSION AND PREVENTION PROGRAM');
@@ -127,7 +127,7 @@
       project: 'Conoce el Proyecto',
       omb: 'Denuncia',
       access: 'Acceso',
-      projectSub: ['Contenido Educativo', 'Acerca de', 'Noticias', 'Datos'],
+      projectSub: ['Contenido Educativo', 'Datos', 'Noticias', 'Acerca de'],
       accessSub: ['Consultar protocolo', 'Acceso administrativo', 'Acceso escuelas', 'Capacitaciones']
     });
     setText('.hero-badge-text', 'PROGRAMA NACIONAL DE INCLUSIÓN Y PREVENCIÓN');

@@ -419,7 +419,7 @@ main,
   }
 
   .hero-desc {
-    padding-inline: 4px;
+    padding-inline: 0;
   }
 
   .btn,

@@ -299,7 +299,7 @@
       project: 'About the Project',
       omb: 'Report',
       access: 'Access',
-      projectSub: ['About', 'News', 'Educational Content', 'Data'],
+      projectSub: ['Educational Content', 'Data', 'News', 'About'],
       accessSub: ['Track protocol', 'Administrative access', 'School access', 'Training']
     });
     setText('.ouv-hero-title', 'School Ombudsman');
@@ -330,7 +330,7 @@
       project: 'Conoce el Proyecto',
       omb: 'Denuncia',
       access: 'Acceso',
-      projectSub: ['Acerca de', 'Noticias', 'Contenido Educativo', 'Datos'],
+      projectSub: ['Contenido Educativo', 'Datos', 'Noticias', 'Acerca de'],
       accessSub: ['Consultar protocolo', 'Acceso administrativo', 'Acceso escuelas', 'Capacitaciones']
     });
     setHtml('.ouv-hero-title', 'Defensoría <span class="ouv-hero-accent">Escolar</span>');
