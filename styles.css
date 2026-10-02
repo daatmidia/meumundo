@@ -1266,16 +1266,9 @@ body.a11y-high-contrast details {
   flex-shrink: 0;
 }
 
-/* VLibras dentro da barra (sem flutuar separado) */
+/* O plugin novo do VLibras cria o próprio botão. O markup antigo fica oculto. */
 .accessibility-dock [vw] {
-  position: relative !important;
-  inset: auto !important;
-  right: auto !important;
-  bottom: auto !important;
-  left: auto !important;
-  top: auto !important;
-  transform: none !important;
-  margin: 0 !important;
+  display: none !important;
 }
 
 .accessibility-dock [vw-access-button] {
