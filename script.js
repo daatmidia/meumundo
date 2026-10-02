@@ -37,7 +37,11 @@
   const applyEnUs = () => {
     document.documentElement.lang = EN_US;
     localStorage.setItem(LANG_KEY, EN_US);
-    document.title = 'REACT Project — Transforming Schools into Spaces of Peace';
+    if (document.body.classList.contains('page-noticias')) {
+      document.title = 'News — REACT Project';
+    } else if (document.body.classList.contains('page-home')) {
+      document.title = 'REACT Project — Transforming Schools into Spaces of Peace';
+    }
     setHtml('.logo-text', 'Project <strong>REACT</strong>');
     setAttr('.js-lang-ptbr', 'title', 'Change language to Portuguese (Brazil)');
     setAttr('.js-lang-enus', 'title', 'Switch language to English (US)');
@@ -64,7 +68,7 @@
       const labels = ['Commitment to support', 'Active support channel', 'National legal basis'];
       if (labels[i]) el.textContent = labels[i];
     });
-    setAttr('.hero-scroll', 'aria-label', 'Scroll to news');
+    setAttr('.hero-scroll', 'aria-label', 'Scroll to testimonials');
     setAttr('.news-ticker', 'aria-label', 'Featured news');
     setText('.news-ticker-label', '📰 LATEST NEWS');
     setText('#noticias .section-tag', 'Real-time updates');
@@ -119,7 +123,11 @@
   const applyEsEs = () => {
     document.documentElement.lang = ES_ES;
     localStorage.setItem(LANG_KEY, ES_ES);
-    document.title = 'Proyecto REACT — Transformando escuelas en espacios de paz';
+    if (document.body.classList.contains('page-noticias')) {
+      document.title = 'Noticias — Proyecto REACT';
+    } else if (document.body.classList.contains('page-home')) {
+      document.title = 'Proyecto REACT — Transformando escuelas en espacios de paz';
+    }
     setHtml('.logo-text', 'Proyecto <strong>REACT</strong>');
     setAttr('.js-lang-ptbr', 'title', 'Cambiar idioma a Portugués (Brasil)');
     setAttr('.js-lang-enus', 'title', 'Switch language to English (US)');
@@ -146,7 +154,7 @@
       const labels = ['Compromiso con la acogida', 'Canal de apoyo activo', 'Base legal nacional'];
       if (labels[i]) el.textContent = labels[i];
     });
-    setAttr('.hero-scroll', 'aria-label', 'Desplazarse a noticias');
+    setAttr('.hero-scroll', 'aria-label', 'Desplazarse a testimonios');
     setAttr('.news-ticker', 'aria-label', 'Noticias destacadas');
     setText('.news-ticker-label', '📰 ÚLTIMAS NOTICIAS');
     setText('#noticias .section-tag', 'Actualizaciones en tiempo real');

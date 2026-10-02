@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notícias — Projeto REACT</title>
+  <meta name="description" content="Notícias sobre bullying e cyberbullying de fontes confiáveis e verificáveis.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="responsive.css">
+</head>
+<body class="page-noticias">
+  <nav class="navbar scrolled" id="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/logo-projeto.png" alt="Logo do projeto" class="logo-project-image" loading="eager" decoding="async">
+        <span class="logo-text">Projeto <strong>REACT</strong></span>
+        <img src="https://upload.wikimedia.org/wikipedia/en/0/05/Flag_of_Brazil.svg" alt="Bandeira do Brasil" class="logo-flag js-lang-ptbr" title="Mudar idioma para Português (Brasil)" role="button" tabindex="0" loading="eager" decoding="async">
+        <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" alt="Bandeira dos Estados Unidos" class="logo-flag js-lang-enus" title="Switch language to English (US)" role="button" tabindex="0" loading="eager" decoding="async">
+        <img src="https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg" alt="Bandera de España" class="logo-flag js-lang-eses" title="Cambiar idioma a Español (España)" role="button" tabindex="0" loading="eager" decoding="async">
+      </a>
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Página Inicial</a></li>
+        <li class="nav-item-submenu">
+          <a href="conheca-o-projeto.html" class="nav-link-has-submenu">Conheça o Projeto</a>
+          <ul class="nav-submenu" aria-label="Submenu Conheça o Projeto">
+            <li><a href="conheca-o-projeto.html">Sobre</a></li>
+            <li><a href="noticias.html" class="nav-active-page">Notícias</a></li>
+            <li><a href="alunos.html">Conteúdo Educativo</a></li>
+            <li><a href="dados.html">Dados</a></li>
+            <li><a href="index.html#depoimentos">Depoimentos</a></li>
+          </ul>
+        </li>
+        <li><a href="ouvidoria.html" class="nav-cta">Denuncia</a></li>
+        <li class="nav-item-submenu">
+          <button type="button" class="nav-link-trigger nav-admin-cta nav-link-has-submenu">Acesso</button>
+          <ul class="nav-submenu" aria-label="Submenu Acesso">
+            <li><a href="ouvidoria.html#acompanhar">Acompanhar protocolo</a></li>
+            <li><a href="ouvidoria.html?admin=1#siteAdmin" target="_blank" rel="noopener noreferrer">Acesso administrativo</a></li>
+            <li><a href="ouvidoria.html?admin=1#painel" target="_blank" rel="noopener noreferrer">Acesso escolas</a></li>
+            <li><a href="ouvidoria.html?admin=1#treinamentos" target="_blank" rel="noopener noreferrer">Treinamentos</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="news-ticker" aria-label="Notícias em destaque">
+    <div class="news-ticker-label">ÚLTIMAS NOTÍCIAS</div>
+    <div class="news-ticker-track">
+      <div class="news-ticker-content" id="tickerContent">
+        <span class="ticker-item"><span class="ticker-source">Portal</span> Carregando manchetes...</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="noticias">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Atualizações em tempo real</span>
+        <h2 class="section-title"><span class="text-gradient-react">Notícias sobre bullying e cyberbullying</span></h2>
+        <p class="section-desc">Exibimos somente notícias sobre bullying e cyberbullying de fontes confiáveis e verificáveis.</p>
+      </div>
+
+      <div class="news-search-wrapper">
+        <span class="news-search-icon">🔎</span>
+        <input id="newsSearchInput" type="text" value="bullying escolar Brasil" placeholder="Buscar dentro de fontes confiáveis (ex: bullying escolar, cyberbullying, lei 14.811)">
+        <button id="newsSearchBtn" class="btn btn-primary" type="button">Buscar</button>
+      </div>
+
+      <div class="news-filters">
+        <button type="button" class="news-filter active" data-query="bullying escolar Brasil">📰 Bullying escolar</button>
+        <button type="button" class="news-filter" data-query="cyberbullying adolescentes Brasil">📱 Cyberbullying</button>
+        <button type="button" class="news-filter" data-query="casos de bullying no Brasil">📌 Casos no Brasil</button>
+      </div>
+
+      <div class="news-grid" id="newsGrid">
+        <div class="news-loading" id="newsLoading">
+          <div class="news-spinner"></div>
+          <p>Buscando notícias...</p>
+        </div>
+      </div>
+
+      <div class="news-more" id="newsMore" hidden>
+        <button type="button" id="loadMoreNews" class="btn btn-outline">Carregar mais notícias</button>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border:none;padding-top:0;">
+        <p>&copy; 2026 Projeto REACT</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="accessibility-dock" id="accessibilityDock">
+    <div vw class="enabled">
+      <div vw-access-button class="active"></div>
+      <div vw-plugin-wrapper>
+        <div class="vw-plugin-top-wrapper"></div>
+      </div>
+    </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
+  <script src="nav-mobile.js"></script>
+  <script src="accessibility.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

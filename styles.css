@@ -582,6 +582,8 @@ body:not(.page-home) .nav-item-submenu:has(.nav-admin-cta) {
   50% { opacity: 0.4; transform: translateY(12px); }
 }
 
+.page-noticias { padding-top: 72px; background: #fafbff; }
+
 /* News ticker */
 .news-ticker {
   display: flex;

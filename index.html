@@ -32,7 +32,7 @@
           <a href="conheca-o-projeto.html" class="nav-link-has-submenu">Conheça o Projeto</a>
           <ul class="nav-submenu" aria-label="Submenu Conheça o Projeto">
             <li><a href="conheca-o-projeto.html">Sobre</a></li>
-            <li><a href="#noticias">Notícias</a></li>
+            <li><a href="noticias.html">Notícias</a></li>
             <li><a href="alunos.html">Conteúdo Educativo</a></li>
             <li><a href="dados.html">Dados</a></li>
             <li><a href="#depoimentos">Depoimentos</a></li>
@@ -93,52 +93,10 @@
       </div>
     </div>
 
-    <a class="hero-scroll" href="#noticias" aria-label="Rolar para notícias">
+    <a class="hero-scroll" href="#depoimentos" aria-label="Rolar para depoimentos">
       <span class="scroll-indicator"></span>
     </a>
   </header>
-
-  <section class="news-ticker" aria-label="Notícias em destaque">
-    <div class="news-ticker-label">ÚLTIMAS NOTÍCIAS</div>
-    <div class="news-ticker-track">
-      <div class="news-ticker-content" id="tickerContent">
-        <span class="ticker-item"><span class="ticker-source">Portal</span> Carregando manchetes...</span>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="noticias">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Atualizações em tempo real</span>
-        <h2 class="section-title"><span class="text-gradient-react">Notícias sobre bullying e cyberbullying</span></h2>
-        <p class="section-desc">Exibimos somente notícias sobre bullying e cyberbullying de fontes confiáveis e verificáveis.</p>
-      </div>
-
-      <div class="news-search-wrapper">
-        <span class="news-search-icon">🔎</span>
-        <input id="newsSearchInput" type="text" value="bullying escolar Brasil" placeholder="Buscar dentro de fontes confiáveis (ex: bullying escolar, cyberbullying, lei 14.811)">
-        <button id="newsSearchBtn" class="btn btn-primary" type="button">Buscar</button>
-      </div>
-
-      <div class="news-filters">
-        <button type="button" class="news-filter active" data-query="bullying escolar Brasil">📰 Bullying escolar</button>
-        <button type="button" class="news-filter" data-query="cyberbullying adolescentes Brasil">📱 Cyberbullying</button>
-        <button type="button" class="news-filter" data-query="casos de bullying no Brasil">📌 Casos no Brasil</button>
-      </div>
-
-      <div class="news-grid" id="newsGrid">
-        <div class="news-loading" id="newsLoading">
-          <div class="news-spinner"></div>
-          <p>Buscando notícias...</p>
-        </div>
-      </div>
-
-      <div class="news-more" id="newsMore" hidden>
-        <button type="button" id="loadMoreNews" class="btn btn-outline">Carregar mais notícias</button>
-      </div>
-    </div>
-  </section>
 
   <section class="section section-depoimentos" id="depoimentos">
     <div class="container">
@@ -219,7 +177,7 @@
           <h4>Portal</h4>
           <ul>
             <li><a href="#inicio">Início</a></li>
-            <li><a href="#noticias">Notícias</a></li>
+            <li><a href="noticias.html">Notícias</a></li>
             <li><a href="dados.html">Dados</a></li>
           </ul>
         </div>
