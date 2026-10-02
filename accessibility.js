@@ -19,7 +19,7 @@
   widget.className = 'a11y-widget';
   widget.id = 'a11yWidget';
   widget.innerHTML = `
-    <button type="button" class="a11y-toggle" id="a11yToggle" aria-expanded="false" aria-controls="a11yPanel" aria-label="Abrir acessibilidade">🤟</button>
+    <button type="button" class="a11y-toggle" id="a11yToggle" aria-expanded="false" aria-controls="a11yPanel" aria-label="Abrir acessibilidade"><span class="a11y-toggle-icon" aria-hidden="true">🤟</span><span class="a11y-toggle-label">Acessibilidade</span></button>
     <div class="a11y-panel" id="a11yPanel" role="dialog" aria-modal="false" aria-label="Acessibilidade">
       <p class="a11y-title">Acessibilidade</p>
       <div class="a11y-row">

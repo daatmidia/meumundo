@@ -1120,6 +1120,69 @@ body:not(.page-home) .nav-item-submenu:has(.nav-admin-cta) {
 
 @media (max-width: 768px) {
   /* Nav mobile: ver responsive.css + nav-mobile.js */
+  .hero { align-items: stretch; }
+  .hero > .hero-content {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    text-align: left;
+  }
+  .hero-title,
+  .hero-under-title,
+  .hero-subtitle,
+  .hero-desc {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    text-align: left;
+  }
+  .hero-badge {
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    text-align: left;
+    justify-content: flex-start;
+    font-size: 0.62rem;
+    gap: 5px;
+    padding: 5px 10px;
+    margin-bottom: 0.85rem;
+    letter-spacing: 0.01em;
+  }
+  .hero-badge-icon { font-size: 0.85rem; }
+  .hero-under-title {
+    font-size: 0.95rem;
+    margin-bottom: 0.55rem;
+  }
+  .hero-subtitle { font-size: 0.82rem; }
+  .hero-desc {
+    font-size: 0.75rem;
+    margin-bottom: 1.15rem;
+  }
+  .hero-actions {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 8px;
+    width: 100%;
+  }
+  .hero-actions .btn,
+  .hero-actions .btn-lg {
+    flex: 1 1 0;
+    width: auto;
+    min-width: 0;
+    min-height: 40px;
+    padding: 8px 10px;
+    font-size: 0.75rem;
+    line-height: 1.2;
+    text-align: center;
+    white-space: normal;
+  }
   .hero-scroll { display: none; }
   .news-ticker { flex-direction: column; }
   .news-ticker-label { justify-content: center; }
@@ -1128,8 +1191,16 @@ body:not(.page-home) .nav-item-submenu:has(.nav-admin-cta) {
 
 @media (max-width: 480px) {
   :root { --container: min(100%, calc(100% - 1.25rem)); }
-  .hero-actions { flex-direction: column; width: 100%; }
-  .hero-actions .btn { width: 100%; }
+  .hero-actions { flex-direction: row; flex-wrap: nowrap; align-items: stretch; gap: 8px; width: 100%; }
+  .hero-actions .btn,
+  .hero-actions .btn-lg {
+    flex: 1 1 0;
+    width: auto;
+    min-width: 0;
+    min-height: 38px;
+    padding: 7px 8px;
+    font-size: 0.7rem;
+  }
   .cta-actions { flex-direction: column; }
   .cta-actions .btn { width: 100%; }
   .hero-logo-bg { width: clamp(160px, 55vw, 280px); right: -22%; top: 42%; opacity: 0.16; }
@@ -1174,14 +1245,19 @@ body.a11y-high-contrast details {
 /* Barra fixa: acessibilidade + VLibras (canto inferior direito) */
 .accessibility-dock {
   position: fixed;
-  right: max(16px, env(safe-area-inset-right, 0px));
+  left: clamp(1.25rem, 5vw, 4rem);
+  right: auto;
   bottom: max(16px, env(safe-area-inset-bottom, 0px));
   z-index: 13000;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
-  gap: 12px;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.2);
   pointer-events: none;
 }
 
@@ -1209,9 +1285,29 @@ body.a11y-high-contrast details {
   left: auto !important;
   top: auto !important;
   margin: 0 !important;
-  width: 40px !important;
-  height: 40px !important;
-  border-radius: 999px !important;
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 12px !important;
+  overflow: hidden;
+}
+.accessibility-dock [vw-access-button] img,
+.accessibility-dock [vw-access-button] svg {
+  width: 48px !important;
+  height: 48px !important;
+  max-width: none !important;
+  object-fit: cover;
+}
+.vlibras-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #2f6bff;
+  color: #fff;
+  font-size: 26px;
+  line-height: 1;
 }
 
 .accessibility-dock [vw-plugin-wrapper] {
@@ -1233,24 +1329,27 @@ body.a11y-high-contrast details {
   z-index: 1;
 }
 .a11y-toggle {
-  width: 40px;
-  height: 40px;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  border-radius: 999px;
+  height: 48px;
+  padding: 0 14px 0 10px;
+  border: 0;
+  border-radius: 12px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: rgba(10, 1, 24, 0.72);
+  gap: 8px;
+  background: #3b5bfd;
   color: #fff;
-  font-size: 18px;
+  font-size: 15px;
+  font-weight: 700;
   line-height: 1;
-  box-shadow: 0 8px 24px rgba(6, 0, 17, 0.38);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  box-shadow: none;
 }
+.a11y-toggle-icon { font-size: 20px; line-height: 1; }
+.a11y-toggle-label { white-space: nowrap; }
 .a11y-panel {
   position: absolute;
-  right: 0;
+  left: 0;
+  right: auto;
   bottom: calc(100% + 10px);
   width: min(260px, calc(100vw - 24px));
   padding: 12px;
@@ -1300,20 +1399,22 @@ body.a11y-high-contrast details {
 
 @media (max-width: 768px) {
   .accessibility-dock {
-    right: max(12px, env(safe-area-inset-right, 0px));
+    left: max(12px, env(safe-area-inset-left, 0px));
     bottom: max(12px, env(safe-area-inset-bottom, 0px));
-    gap: 10px;
+    gap: 8px;
   }
 
-  .accessibility-dock [vw-access-button] {
+  .accessibility-dock [vw-access-button],
+  .accessibility-dock [vw-access-button] img,
+  .accessibility-dock [vw-access-button] svg {
     width: 44px !important;
     height: 44px !important;
   }
 
   .a11y-toggle {
-    width: 44px;
     height: 44px;
-    font-size: 16px;
+    padding: 0 12px 0 8px;
+    font-size: 14px;
   }
 
   .a11y-panel {
