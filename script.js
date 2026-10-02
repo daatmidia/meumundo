@@ -56,7 +56,7 @@
       accessSub: ['Track protocol', 'Administrative access', 'School access', 'Training']
     });
     setText('.hero-badge-text', 'NATIONAL INCLUSION AND PREVENTION PROGRAM');
-    setText('.hero-under-title', 'Youth Against Bullying');
+    setText('.hero-under-title', 'Against Bullying');
     setText('.hero-subtitle', 'A platform that connects families, schools and the support network to promote inclusion, prevent situations of violence and organize each stage of protecting children and adolescents.');
     setHtml('.hero-desc', 'Education, technology and legal support against bullying, under <strong>Law No. 14,811/2024</strong>.');
     const heroBtns = document.querySelectorAll('.hero-actions a');
@@ -131,7 +131,7 @@
       accessSub: ['Consultar protocolo', 'Acceso administrativo', 'Acceso escuelas', 'Capacitaciones']
     });
     setText('.hero-badge-text', 'PROGRAMA NACIONAL DE INCLUSIÓN Y PREVENCIÓN');
-    setText('.hero-under-title', 'Juventud Contra el Bullying');
+    setText('.hero-under-title', 'Contra el Bullying');
     setText('.hero-subtitle', 'Una plataforma que conecta familias, escuelas y la red de apoyo para promover la inclusión, prevenir situaciones de violencia y organizar cada etapa de la protección de niños y adolescentes.');
     setHtml('.hero-desc', 'Educación, tecnología y apoyo legal contra el bullying, conforme a la <strong>Ley N.º 14.811/2024</strong>.');
     const heroBtns = document.querySelectorAll('.hero-actions a');

@@ -405,8 +405,24 @@ main,
   }
 
   .footer-grid {
-    grid-template-columns: 1fr !important;
-    gap: 28px;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 18px 12px;
+  }
+
+  .footer-about {
+    grid-column: 1 / -1;
+  }
+
+  .footer-links h4,
+  .footer-contact h4 {
+    font-size: 0.82rem;
+    margin-bottom: 10px;
+  }
+
+  .footer-links a,
+  .footer-contact p {
+    font-size: 0.78rem;
+    overflow-wrap: anywhere;
   }
 
   .footer-social {
