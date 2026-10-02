@@ -15,7 +15,7 @@
   <nav class="navbar" id="navbar">
     <div class="container nav-container">
       <a href="#inicio" class="nav-logo">
-        <img src="assets/logo-projeto.png" alt="Logo do projeto" class="logo-project-image" loading="eager" decoding="async">
+        <img src="assets/logo-projeto.png?v=2" alt="Logo do projeto" class="logo-project-image" loading="eager" decoding="async">
         <span class="logo-text">Projeto <strong>REACT</strong></span>
         <img src="https://upload.wikimedia.org/wikipedia/en/0/05/Flag_of_Brazil.svg" alt="Bandeira do Brasil" class="logo-flag js-lang-ptbr" title="Mudar idioma para Português (Brasil)" role="button" tabindex="0" loading="eager" decoding="async">
         <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" alt="Bandeira dos Estados Unidos" class="logo-flag js-lang-enus" title="Switch language to English (US)" role="button" tabindex="0" loading="eager" decoding="async">
@@ -37,7 +37,6 @@
             <li><a href="dados.html">Dados</a></li>
           </ul>
         </li>
-        <li><a href="ouvidoria.html" class="nav-cta">Denuncia</a></li>
         <li class="nav-item-submenu">
           <button type="button" class="nav-link-trigger nav-admin-cta nav-link-has-submenu">Acesso</button>
           <ul class="nav-submenu" aria-label="Submenu Acesso">
@@ -54,7 +53,6 @@
   <header class="hero" id="inicio">
     <canvas id="heroParticles" class="hero-particles" aria-hidden="true"></canvas>
     <div class="hero-bg-shapes" aria-hidden="true">
-      <img src="assets/logo-projeto.png" alt="" class="hero-logo-bg" loading="lazy" decoding="async">
       <div class="shape shape-1"></div>
       <div class="shape shape-2"></div>
       <div class="shape shape-3"></div>
@@ -63,17 +61,20 @@
 
     <div class="container hero-content">
       <div class="hero-badge">Programa Nacional de Prevenção</div>
-      <h1 class="hero-title">
-        <span class="hero-project">Projeto</span>
-        <span class="hero-react">REACT</span>
-      </h1>
+      <div class="hero-title-row">
+        <h1 class="hero-title">
+          <span class="hero-project">Projeto</span>
+          <span class="hero-react">REACT</span>
+        </h1>
+        <img src="assets/logo-projeto.png?v=2" alt="" class="hero-logo-bg" loading="lazy" decoding="async">
+      </div>
       <p class="hero-under-title">Juventude Contra o Bullying</p>
       <p class="hero-subtitle">Transformando escolas em espaços de paz, segurança e justiça</p>
       <p class="hero-desc">Educação, tecnologia e apoio jurídico contra o bullying, conforme a <strong>Lei nº 14.811/2024</strong>.</p>
 
       <div class="hero-actions">
         <a href="conheca-o-projeto.html" class="btn btn-black btn-lg">Conheça a Plataforma <span aria-hidden="true">→</span></a>
-        <a href="ouvidoria.html" class="btn btn-outline btn-lg">Faça sua Denúncia</a>
+        <a href="ouvidoria.html" class="btn btn-outline btn-lg btn-denuncia">Faça sua Denúncia</a>
       </div>
     </div>
 

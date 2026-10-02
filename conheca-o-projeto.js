@@ -10,15 +10,13 @@
   const applyNavI18n = (labels) => {
     const navHome = document.querySelector('#navLinks > li:nth-child(1) > a');
     const navProject = document.querySelector('#navLinks > li:nth-child(2) > a');
-    const navOmb = document.querySelector('#navLinks > li:nth-child(3) > a');
-    const navAccess = document.querySelector('#navLinks > li:nth-child(4) > .nav-link-trigger');
+    const navAccess = document.querySelector('#navLinks > li:nth-child(3) > .nav-link-trigger');
     if (navHome) navHome.textContent = labels.home;
     if (navProject) navProject.textContent = labels.project;
-    if (navOmb) navOmb.textContent = labels.omb;
     if (navAccess) navAccess.textContent = labels.access;
     const projectSub = document.querySelectorAll('#navLinks > li:nth-child(2) .nav-submenu a');
     labels.projectSub.forEach((txt, i) => { if (projectSub[i]) projectSub[i].textContent = txt; });
-    const accessSub = document.querySelectorAll('#navLinks > li:nth-child(4) .nav-submenu a');
+    const accessSub = document.querySelectorAll('#navLinks > li:nth-child(3) .nav-submenu a');
     labels.accessSub.forEach((txt, i) => { if (accessSub[i]) accessSub[i].textContent = txt; });
   };
   const applyPtBr = () => {
