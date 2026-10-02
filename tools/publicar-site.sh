@@ -38,6 +38,13 @@ if ! git remote get-url meumundo >/dev/null 2>&1; then
 fi
 
 # Site publicado: https://daatmidia.github.io/react/
-git push react HEAD:main || true
-git push origin HEAD:main || true
-git push meumundo HEAD:projeto-jcb || true
+GH="$ROOT/tools/gh"
+if [ -x "$GH" ]; then
+  git -c credential.helper= -c "credential.helper=!$GH auth git-credential" push react HEAD:main || true
+  git -c credential.helper= -c "credential.helper=!$GH auth git-credential" push origin HEAD:main || true
+  git -c credential.helper= -c "credential.helper=!$GH auth git-credential" push meumundo HEAD:projeto-jcb || true
+else
+  git push react HEAD:main || true
+  git push origin HEAD:main || true
+  git push meumundo HEAD:projeto-jcb || true
+fi
