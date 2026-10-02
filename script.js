@@ -62,7 +62,7 @@
     setText('.hero-subtitle', 'Transforming Schools into Spaces of Peace, Safety and Justice');
     setHtml('.hero-desc', 'Education, technology and legal support against bullying, under <strong>Law No. 14,811/2024</strong>.');
     const heroBtns = document.querySelectorAll('.hero-actions a');
-    if (heroBtns[0]) heroBtns[0].textContent = 'File a Report';
+    if (heroBtns[0]) heroBtns[0].innerHTML = 'Meet the Platform <span aria-hidden="true">→</span>';
     if (heroBtns[1]) heroBtns[1].textContent = 'About the Project';
     document.querySelectorAll('.stat-label').forEach((el, i) => {
       const labels = ['Commitment to support', 'Active support channel', 'National legal basis'];
@@ -137,7 +137,7 @@
     setText('.hero-subtitle', 'Transformando escuelas en espacios de paz, seguridad y justicia');
     setHtml('.hero-desc', 'Educación, tecnología y apoyo legal contra el bullying, conforme a la <strong>Ley N.º 14.811/2024</strong>.');
     const heroBtns = document.querySelectorAll('.hero-actions a');
-    if (heroBtns[0]) heroBtns[0].textContent = 'Hacer una denuncia';
+    if (heroBtns[0]) heroBtns[0].innerHTML = 'Conoce la Plataforma <span aria-hidden="true">→</span>';
     if (heroBtns[1]) heroBtns[1].textContent = 'Conoce el Proyecto';
     document.querySelectorAll('.stat-label').forEach((el, i) => {
       const labels = ['Compromiso con la acogida', 'Canal de apoyo activo', 'Base legal nacional'];
