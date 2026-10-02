@@ -466,8 +466,9 @@ main,
   }
 
   .hero-logo-bg {
-    width: clamp(180px, 48vw, 420px) !important;
-    right: -18% !important;
+    width: min(72vw, 640px) !important;
+    max-width: 640px !important;
+    right: -28% !important;
     top: 44% !important;
     opacity: 0.16 !important;
   }

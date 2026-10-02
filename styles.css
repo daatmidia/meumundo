@@ -391,10 +391,10 @@ body:not(.page-home) .nav-item-submenu:has(.nav-admin-cta) {
 .hero-bg-shapes { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
 .hero-logo-bg {
   position: absolute;
-  left: 42%;
-  top: 50%;
-  width: min(70vw, 860px);
-  max-width: 860px;
+  right: max(-37.5%, -320px);
+  top: 44%;
+  width: 75%;
+  max-width: 900px;
   height: auto;
   opacity: 0.18;
   z-index: 0;
@@ -419,8 +419,8 @@ body:not(.page-home) .nav-item-submenu:has(.nav-admin-cta) {
   66% { transform: translate(-3%, 4%) scale(0.95); }
 }
 @keyframes heroLogoSpin {
-  from { transform: translateY(-50%) rotate(0deg); }
-  to { transform: translateY(-50%) rotate(360deg); }
+  from { transform: translateY(-44%) rotate(0deg); }
+  to { transform: translateY(-44%) rotate(360deg); }
 }
 .hero::before {
   content: '';
@@ -443,7 +443,9 @@ body:not(.page-home) .nav-item-submenu:has(.nav-admin-cta) {
   color: var(--gray-900);
 }
 .hero-badge {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   padding: 8px 18px;
   border-radius: 999px;
   background: rgba(15, 23, 42, 0.04);
@@ -451,6 +453,13 @@ body:not(.page-home) .nav-item-submenu:has(.nav-admin-cta) {
   backdrop-filter: blur(12px);
   font-size: 0.85rem;
   margin-bottom: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+.hero-badge-icon {
+  font-size: 1.05rem;
+  line-height: 1;
+  flex: 0 0 auto;
 }
 .hero-title {
   font-family: 'Sora', 'Inter', system-ui, sans-serif;
@@ -1118,7 +1127,7 @@ body:not(.page-home) .nav-item-submenu:has(.nav-admin-cta) {
   .hero-actions .btn { width: 100%; }
   .cta-actions { flex-direction: column; }
   .cta-actions .btn { width: 100%; }
-  .hero-logo-bg { left: auto; right: -12%; top: 46%; width: min(52vw, 240px); opacity: 0.14; }
+  .hero-logo-bg { width: clamp(160px, 55vw, 280px); right: -22%; top: 42%; opacity: 0.16; }
 }
 
 @media (prefers-reduced-motion: reduce) {
