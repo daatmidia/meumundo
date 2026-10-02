@@ -466,9 +466,10 @@ main,
   }
 
   .hero-logo-bg {
-    width: 132px !important;
-    margin-top: -10px !important;
-    opacity: 0.9 !important;
+    width: clamp(180px, 48vw, 420px) !important;
+    right: -18% !important;
+    top: 44% !important;
+    opacity: 0.16 !important;
   }
 
   .dados-ju-img,
@@ -961,12 +962,5 @@ main,
   .nav-links,
   .nav-toggle-icon span {
     transition: none !important;
-  }
-}
-
-@media (max-width: 640px) {
-  .hero-logo-bg {
-    width: 84px !important;
-    margin-top: 2px !important;
   }
 }

@@ -57,7 +57,7 @@
     });
     setText('.hero-badge', 'National Prevention Program');
     setText('.hero-under-title', 'Youth Against Bullying');
-    setText('.hero-subtitle', 'Transforming Schools into Spaces of Peace, Safety and Justice');
+    setText('.hero-subtitle', 'A platform that connects families, schools and the support network to promote inclusion, prevent situations of violence and organize each stage of protecting children and adolescents.');
     setHtml('.hero-desc', 'Education, technology and legal support against bullying, under <strong>Law No. 14,811/2024</strong>.');
     const heroBtns = document.querySelectorAll('.hero-actions a');
     if (heroBtns[0]) heroBtns[0].innerHTML = 'Meet the Platform <span aria-hidden="true">→</span>';
@@ -132,7 +132,7 @@
     });
     setText('.hero-badge', 'Programa Nacional de Prevención');
     setText('.hero-under-title', 'Juventud Contra el Bullying');
-    setText('.hero-subtitle', 'Transformando escuelas en espacios de paz, seguridad y justicia');
+    setText('.hero-subtitle', 'Una plataforma que conecta familias, escuelas y la red de apoyo para promover la inclusión, prevenir situaciones de violencia y organizar cada etapa de la protección de niños y adolescentes.');
     setHtml('.hero-desc', 'Educación, tecnología y apoyo legal contra el bullying, conforme a la <strong>Ley N.º 14.811/2024</strong>.');
     const heroBtns = document.querySelectorAll('.hero-actions a');
     if (heroBtns[0]) heroBtns[0].innerHTML = 'Conoce la Plataforma <span aria-hidden="true">→</span>';
