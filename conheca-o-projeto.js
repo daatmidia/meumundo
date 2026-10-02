@@ -41,7 +41,7 @@
       project: 'About the Project',
       omb: 'Report',
       access: 'Access',
-      projectSub: ['About', 'News', 'Educational Content', 'Data', 'Testimonials'],
+      projectSub: ['About', 'News', 'Educational Content', 'Data'],
       accessSub: ['Track protocol', 'Administrative access', 'School access', 'Training']
     });
     setText('.proj-tag', 'Education and citizenship');
@@ -103,7 +103,7 @@
       project: 'Conoce el Proyecto',
       omb: 'Denuncia',
       access: 'Acceso',
-      projectSub: ['Acerca de', 'Noticias', 'Contenido Educativo', 'Datos', 'Testimonios'],
+      projectSub: ['Acerca de', 'Noticias', 'Contenido Educativo', 'Datos'],
       accessSub: ['Consultar protocolo', 'Acceso administrativo', 'Acceso escuelas', 'Capacitaciones']
     });
     setText('.proj-tag', 'Educación y ciudadanía');

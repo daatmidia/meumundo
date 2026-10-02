@@ -1008,67 +1008,6 @@ body:not(.page-home) .nav-item-submenu:has(.nav-admin-cta) {
   padding-top: 14px;
 }
 
-/* Depoimentos */
-.section-depoimentos { background: var(--gray-50); }
-.depoimentos-carousel { position: relative; overflow: hidden; }
-.depoimentos-track {
-  display: flex;
-  transition: transform 0.45s ease;
-}
-.depoimento-card {
-  flex: 0 0 100%;
-  padding: 32px;
-  background: var(--white);
-  border-radius: var(--radius);
-  border: 1px solid var(--gray-100);
-  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.05);
-}
-.depoimento-quote { font-size: 3rem; line-height: 1; color: var(--neon-purple); opacity: 0.35; font-family: Georgia, serif; }
-.depoimento-card p { font-size: 1.05rem; margin: 0 0 20px; color: var(--gray-900); }
-.depoimento-author { display: flex; align-items: center; gap: 14px; }
-.depoimento-avatar {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: var(--gradient-neon);
-  color: var(--white);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  font-size: 0.85rem;
-}
-.depoimento-author strong { display: block; }
-.depoimento-author span { display: block; font-size: 0.85rem; color: var(--gray-500); }
-.carousel-controls {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  margin-top: 20px;
-}
-.carousel-btn {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: var(--white);
-  border: 1px solid var(--gray-100);
-  font-size: 1.2rem;
-  transition: var(--transition);
-}
-.carousel-btn:hover { background: var(--gray-100); }
-.carousel-dots { display: flex; gap: 8px; }
-.carousel-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--gray-400);
-  cursor: pointer;
-  border: none;
-  padding: 0;
-}
-.carousel-dot.active { background: var(--neon-purple); transform: scale(1.15); }
-
 /* CTA */
 .section-cta {
   background: var(--bg-dark);
@@ -1175,7 +1114,6 @@ body:not(.page-home) .nav-item-submenu:has(.nav-admin-cta) {
   html { scroll-behavior: auto; }
   .news-ticker-content, .shape, .hero-react, .scroll-indicator::after, .logo-project-image, .hero-logo-bg { animation: none !important; }
   .nav-cta { animation: none !important; }
-  .depoimentos-track { transition: none; }
   .news-card-img { transition: none; }
   .news-card:hover .news-card-img { transform: none; }
   .news-card-img-placeholder { animation: none !important; }
@@ -1202,7 +1140,6 @@ body.a11y-high-contrast .navbar.scrolled {
 body.a11y-high-contrast .card,
 body.a11y-high-contrast .about-card,
 body.a11y-high-contrast .dado-card,
-body.a11y-high-contrast .depoimento-card,
 body.a11y-high-contrast details {
   background: #fff !important;
   color: #000 !important;

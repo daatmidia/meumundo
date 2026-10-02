@@ -54,7 +54,7 @@
       project: 'About the Project',
       omb: 'Report',
       access: 'Access',
-      projectSub: ['About', 'News', 'Educational Content', 'Data', 'Testimonials'],
+      projectSub: ['About', 'News', 'Educational Content', 'Data'],
       accessSub: ['Track protocol', 'Administrative access', 'School access', 'Training']
     });
     setText('.hero-badge', 'National Prevention Program');
@@ -68,7 +68,7 @@
       const labels = ['Commitment to support', 'Active support channel', 'National legal basis'];
       if (labels[i]) el.textContent = labels[i];
     });
-    setAttr('.hero-scroll', 'aria-label', 'Scroll to testimonials');
+    setAttr('.hero-scroll', 'aria-label', 'Scroll to the footer');
     setAttr('.news-ticker', 'aria-label', 'Featured news');
     setText('.news-ticker-label', '📰 LATEST NEWS');
     setText('#noticias .section-tag', 'Real-time updates');
@@ -81,17 +81,6 @@
     if (filters[1]) filters[1].textContent = '📱 Cyberbullying';
     if (filters[2]) filters[2].textContent = '📌 Cases in Brazil';
     setText('#loadMoreNews', 'Load more news');
-    setText('.section-depoimentos .section-tag', 'Voices from the community');
-    setText('.section-depoimentos .section-title', 'Testimonials');
-    setText('.section-depoimentos .section-desc', 'Stories about the impact of dialogue and prevention in school environments.');
-    setText('.depoimento-card:nth-child(1) p', 'After prevention actions, dialogue between students and the school board improved a lot. Today we know how to act without exposing anyone.');
-    setHtml('.depoimento-card:nth-child(1) .depoimento-author div', '<strong>School team</strong><span>Public network</span>');
-    setText('.depoimento-card:nth-child(2) p', 'The ombudsman channel brought safety to report cases. The protocol helped my family follow everything with transparency.');
-    setHtml('.depoimento-card:nth-child(2) .depoimento-author div', '<strong>Guardian</strong><span>School community</span>');
-    setText('.depoimento-card:nth-child(3) p', 'With guidance and proper mediation, we managed to stop conflicts before they became continuous violence.');
-    setHtml('.depoimento-card:nth-child(3) .depoimento-author div', '<strong>Educational guidance</strong><span>Partner project</span>');
-    setAttr('#prevBtn', 'aria-label', 'Previous testimonial');
-    setAttr('#nextBtn', 'aria-label', 'Next testimonial');
     setText('.section-cta h2', 'Let us build a safer school together');
     setText('.section-cta p', 'Access the official channel for reports, protocol follow-up, and prevention guidance.');
     setText('.section-cta .cta-actions a:nth-child(1)', 'Go to Ombudsman');
@@ -140,7 +129,7 @@
       project: 'Conoce el Proyecto',
       omb: 'Denuncia',
       access: 'Acceso',
-      projectSub: ['Acerca de', 'Noticias', 'Contenido Educativo', 'Datos', 'Testimonios'],
+      projectSub: ['Acerca de', 'Noticias', 'Contenido Educativo', 'Datos'],
       accessSub: ['Consultar protocolo', 'Acceso administrativo', 'Acceso escuelas', 'Capacitaciones']
     });
     setText('.hero-badge', 'Programa Nacional de Prevención');
@@ -154,7 +143,7 @@
       const labels = ['Compromiso con la acogida', 'Canal de apoyo activo', 'Base legal nacional'];
       if (labels[i]) el.textContent = labels[i];
     });
-    setAttr('.hero-scroll', 'aria-label', 'Desplazarse a testimonios');
+    setAttr('.hero-scroll', 'aria-label', 'Desplazarse al pie de página');
     setAttr('.news-ticker', 'aria-label', 'Noticias destacadas');
     setText('.news-ticker-label', '📰 ÚLTIMAS NOTICIAS');
     setText('#noticias .section-tag', 'Actualizaciones en tiempo real');
@@ -167,17 +156,6 @@
     if (filters[1]) filters[1].textContent = '📱 Ciberbullying';
     if (filters[2]) filters[2].textContent = '📌 Casos en Brasil';
     setText('#loadMoreNews', 'Cargar más noticias');
-    setText('.section-depoimentos .section-tag', 'Voces de la comunidad');
-    setText('.section-depoimentos .section-title', 'Testimonios');
-    setText('.section-depoimentos .section-desc', 'Relatos sobre el impacto del diálogo y la prevención en el entorno escolar.');
-    setText('.depoimento-card:nth-child(1) p', 'Después de las acciones de prevención, el diálogo entre alumnos y coordinación mejoró mucho. Hoy sabemos cómo actuar sin exponer a nadie.');
-    setHtml('.depoimento-card:nth-child(1) .depoimento-author div', '<strong>Equipo escolar</strong><span>Red pública</span>');
-    setText('.depoimento-card:nth-child(2) p', 'La defensoría trajo seguridad para denunciar. El protocolo ayudó a mi familia a acompañar todo con transparencia.');
-    setHtml('.depoimento-card:nth-child(2) .depoimento-author div', '<strong>Responsable</strong><span>Comunidad escolar</span>');
-    setText('.depoimento-card:nth-child(3) p', 'Con orientación y mediación adecuada, logramos detener conflictos antes de que se conviertan en violencia continua.');
-    setHtml('.depoimento-card:nth-child(3) .depoimento-author div', '<strong>Orientación educativa</strong><span>Proyecto asociado</span>');
-    setAttr('#prevBtn', 'aria-label', 'Testimonio anterior');
-    setAttr('#nextBtn', 'aria-label', 'Siguiente testimonio');
     setText('.section-cta h2', 'Construyamos juntos una escuela más segura');
     setText('.section-cta p', 'Accede al canal oficial para denuncias, seguimiento de protocolos y orientaciones de prevención.');
     setText('.section-cta .cta-actions a:nth-child(1)', 'Ir a Defensoría');
@@ -273,7 +251,7 @@
   animateCounters();
 
   /* ========== Fade in on scroll ========== */
-  document.querySelectorAll('.section-header, .about-card, .dado-card, .news-card, .depoimento-card').forEach((el) => {
+  document.querySelectorAll('.section-header, .about-card, .dado-card, .news-card').forEach((el) => {
     el.classList.add('fade-in');
   });
   const fadeObs = new IntersectionObserver((entries) => {
@@ -282,46 +260,6 @@
     });
   }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
   document.querySelectorAll('.fade-in').forEach((el) => fadeObs.observe(el));
-
-  /* ========== Depoimentos carousel ========== */
-  const track = document.getElementById('depoimentosTrack');
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
-  const dotsWrap = document.getElementById('carouselDots');
-  let slide = 0;
-  let slides = [];
-
-  const initCarousel = () => {
-    if (!track) return;
-    slides = Array.from(track.querySelectorAll('.depoimento-card'));
-    if (slides.length === 0) return;
-    dotsWrap.innerHTML = '';
-    slides.forEach((_, i) => {
-      const b = document.createElement('button');
-      b.type = 'button';
-      b.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-      b.setAttribute('aria-label', `Slide ${i + 1}`);
-      b.addEventListener('click', () => goTo(i));
-      dotsWrap.appendChild(b);
-    });
-    goTo(0);
-    let timer = setInterval(() => goTo((slide + 1) % slides.length), 6000);
-    track.addEventListener('mouseenter', () => clearInterval(timer));
-    track.addEventListener('mouseleave', () => {
-      timer = setInterval(() => goTo((slide + 1) % slides.length), 6000);
-    });
-  };
-
-  function goTo(i) {
-    if (!track || slides.length === 0) return;
-    slide = (i + slides.length) % slides.length;
-    track.style.transform = `translateX(-${slide * 100}%)`;
-    dotsWrap?.querySelectorAll('.carousel-dot').forEach((d, j) => d.classList.toggle('active', j === slide));
-  }
-
-  prevBtn?.addEventListener('click', () => goTo(slide - 1));
-  nextBtn?.addEventListener('click', () => goTo(slide + 1));
-  initCarousel();
 
   /* ========== Hero particles (canvas) ========== */
   const canvas = document.getElementById('heroParticles');
