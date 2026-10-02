@@ -19,7 +19,7 @@
   widget.className = 'a11y-widget';
   widget.id = 'a11yWidget';
   widget.innerHTML = `
-    <button type="button" class="a11y-toggle" id="a11yToggle" aria-expanded="false" aria-controls="a11yPanel" aria-label="Abrir acessibilidade"><span class="a11y-toggle-icon" aria-hidden="true">🤟</span><span class="a11y-toggle-label">Acessibilidade</span></button>
+    <button type="button" class="a11y-toggle" id="a11yToggle" aria-expanded="false" aria-controls="a11yPanel" aria-label="Abrir acessibilidade">🤟</button>
     <div class="a11y-panel" id="a11yPanel" role="dialog" aria-modal="false" aria-label="Acessibilidade">
       <p class="a11y-title">Acessibilidade</p>
       <div class="a11y-row">
@@ -46,89 +46,6 @@
   `;
   const dock = document.getElementById('accessibilityDock');
   (dock || document.body).prepend(widget);
-
-  document.querySelectorAll('[vw]').forEach((el) => {
-    el.hidden = true;
-  });
-
-  function vlibrasAccess() {
-    const root = document.getElementById('vlibras-access-wrapper')?.shadowRoot;
-    return root ? root.querySelector('#vlibras-access') : null;
-  }
-
-  function placeVlibras() {
-    const access = vlibrasAccess();
-    if (!access || !dock) return;
-    const r = dock.getBoundingClientRect();
-    const gap = 8;
-    const groupWidth = 274;
-    const height = 56;
-    const fits = r.right + gap + groupWidth <= window.innerWidth - 12;
-    const left = fits ? r.right + gap : r.left;
-    const top = fits ? r.top + (r.height - height) / 2 : r.top - height - gap;
-    access.style.left = `${Math.round(left)}px`;
-    access.style.top = `${Math.round(Math.max(8, top))}px`;
-  }
-
-  function joinVlibrasButtons() {
-    const wrapper = document.getElementById('vlibras-access-wrapper');
-    const root = wrapper && wrapper.shadowRoot;
-    if (!root) return false;
-    if (!root.getElementById('vlibras-join')) {
-      const style = document.createElement('style');
-      style.id = 'vlibras-join';
-      style.textContent = `
-        #vlibras-access {
-          position: fixed !important;
-          right: auto !important;
-          bottom: auto !important;
-          width: auto !important;
-          height: 56px !important;
-          gap: 8px !important;
-          display: flex !important;
-          flex-direction: row !important;
-          align-items: center !important;
-          transition: none !important;
-          z-index: 2147483639 !important;
-        }
-        #vlibras-popup {
-          display: block !important;
-          position: relative !important;
-          width: 210px !important;
-          height: 56px !important;
-          max-width: none !important;
-          object-fit: fill !important;
-          border-radius: 14px !important;
-          flex: 0 0 auto !important;
-        }
-        #vlibras-button {
-          position: relative !important;
-          inset: auto !important;
-          right: auto !important;
-          width: 56px !important;
-          height: 56px !important;
-          flex: 0 0 56px !important;
-          border-radius: 14px !important;
-        }
-        #vlibras-button img {
-          display: block !important;
-          width: 56px !important;
-          height: 56px !important;
-        }
-      `;
-      root.appendChild(style);
-    }
-    placeVlibras();
-    return true;
-  }
-
-  if (!joinVlibrasButtons()) {
-    const started = Date.now();
-    const timer = setInterval(() => {
-      if (joinVlibrasButtons() || Date.now() - started > 8000) clearInterval(timer);
-    }, 100);
-  }
-  window.addEventListener('resize', placeVlibras);
 
   const toggle = document.getElementById('a11yToggle');
   const panel = document.getElementById('a11yPanel');
